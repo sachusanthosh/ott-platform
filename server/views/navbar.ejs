@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/movies">Movies</a>
+        <a class="nav-link" href="/users">Users</a>
+        <a class="nav-link" href="/report">Report</a>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown drop-up">
+    <i class="bi bi-gear-fill" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"
+      style="color: #343a40;"></i>
+
+    <!-- Use dropdown-menu-end to align to the right -->
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+      <li>
+        <button class="dropdown-item" onclick="logout()">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: static;
+  }
+
+  .navbar {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-brand,
+  .nav-link {
+    color: #343a40;
+  }
+
+  .nav-link.active,
+  .nav-link:hover {
+    color: #007bff;
+  }
+
+  .dropdown {
+    margin: 0 7px;
+    font-size: larger;
+  }
+</style>

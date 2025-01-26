@@ -1,0 +1,34 @@
+/* Home Container */
+.watch-history {
+    padding: 20px;
+    background-color: #121212; /* Dark background */
+    min-height: 100vh;
+    color: #fff; /* White text */
+  }
+  
+  /* Page Title */
+  .watch-history-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #e4e4e4; /* Light text color */
+  }
+  
+  .watch-history-container{
+      padding-top: 6rem;
+  }
+  
+  /* Movie Grid */
+  .watch-history-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    );
+    justify-items: center;
+    align-items: start;
+    padding-top: 2rem
+  }
+  

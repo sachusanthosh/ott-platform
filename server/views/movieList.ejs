@@ -1,0 +1,63 @@
+<% title = 'Movies'; %>
+<div class="container" style="height: 100vh;">
+    <div class="container header mt-1">
+        <div class="d-flex justify-content-between align-items-center col-md-12 p-3">
+            <h3>Movies List</h3>
+            <div class="d-flex justify-content-between col-md-6">
+                <div class="mx-2">
+                    <button type="button" href="" class="btn btn-primary"><a href="/movies/create" style="color: #fff;">Add</a></button>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Movies">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container movies-container mt-3">
+        <ul class="list-group list-group-flush">
+            <% for (let i = (currentPage - 1) * moviesPerPage; i < Math.min(currentPage * moviesPerPage, totalMovies); i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="fw-bold m-1"><a href="/movies/details">Movie Title <%= i + 1 %></a></div>
+                    <div class="d-flex justify-content-between">
+                        <button class="m-1"><a href="/movies/edit">edit</a></button>
+                        <button class="m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">delete</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <%- include('./deleteMovie') %>
+                        </div>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="container mt-3 d-flex justify-content-center">
+        <nav>
+            <ul class="pagination">
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .active .page-link {
+        background-color: #007bff;
+        color: white;
+    }
+    .header{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+    .movies-container{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+</style>

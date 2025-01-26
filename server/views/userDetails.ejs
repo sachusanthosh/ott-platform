@@ -1,0 +1,70 @@
+<% title = 'User Details'; %>
+
+<div class="container py-5">
+    <!-- User Information Section -->
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h4>User Name</h4>
+                <span class="text-muted">user@mail.com</span>
+            </div>
+            <button class="btn btn-danger">Block User</button>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Watch History Section -->
+    <div>
+        <h3 class="mb-4">User Watch History</h3>
+        <div class="watch-history">
+            <!-- Watch History List -->
+            <ul class="list-group">
+                <% for (let i = (currentPage - 1) * limit; i < Math.min(currentPage * limit, totalItems); i++) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/movies/details" class="fw-bold text-decoration-none text-dark">
+                            Movie Title <%= i + 1 %>
+                        </a>
+                        <span class="text-muted">Date, Time</span>
+                    </li>
+                <% } %>
+            </ul>
+
+            <!-- Pagination -->
+            <div class="mt-4 d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <% for (let i = 1; i <= totalPages; i++) { %>
+                            <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    .pagination .page-link {
+        color: #007bff;
+    }
+
+    .pagination .page-link:hover {
+        color: #0056b3;
+    }
+</style>

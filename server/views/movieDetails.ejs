@@ -1,0 +1,34 @@
+<% title='edit' %>
+
+    <div class="container">
+        <div>
+            <iframe width="1000" height="500" src="https://www.youtube.com/embed/_HacZSM24mA?si=7r5TH8Vv6y1aU2iN"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <h4>Movie title</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium possimus eligendi fugit iusto
+                quibusdam quae explicabo sed assumenda nesciunt. Deleniti unde ut enim accusamus eveniet quod provident
+                pariatur id consectetur.</p>
+
+            <div class="d-flex">
+                <button class="m-1"><a href="/movies/edit">edit</a></button>
+                <button class="m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <%- include('./deleteMovie') %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
