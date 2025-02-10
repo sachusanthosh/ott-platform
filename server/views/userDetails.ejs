@@ -5,8 +5,8 @@
     <div class="mb-4">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h4>User Name</h4>
-                <span class="text-muted">user@mail.com</span>
+                <h4><%= user.userName %></h4>
+                <span class="text-muted"><%= user.email %></span>
             </div>
             <button class="btn btn-danger">Block User</button>
         </div>
@@ -21,21 +21,21 @@
             <ul class="list-group">
                 <% for (let i = (currentPage - 1) * limit; i < Math.min(currentPage * limit, totalItems); i++) { %>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="/movies/details" class="fw-bold text-decoration-none text-dark">
-                            Movie Title <%= i + 1 %>
+                        <% const movie = user.watchHistory[i].movieId; %>
+                        <a href="/movies/details?id=<%= movie ? movie._id : '#' %>" class="fw-bold text-decoration-none text-dark">
+                            <%= movie ? movie.title : 'Unknown Movie' %>
                         </a>
-                        <span class="text-muted">Date, Time</span>
+                        <span class="text-muted"><%= new Date(user.watchHistory[i].date).toDateString() %></span>
                     </li>
                 <% } %>
             </ul>
-
             <!-- Pagination -->
             <div class="mt-4 d-flex justify-content-center">
                 <nav>
                     <ul class="pagination">
                         <% for (let i = 1; i <= totalPages; i++) { %>
                             <li class="page-item <%= i === currentPage ? 'active' : '' %>">
-                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                <a class="page-link" href="?id=<%= user._id %>&page=<%= i %>"><%= i %></a>
                             </li>
                         <% } %>
                     </ul>

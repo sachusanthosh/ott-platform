@@ -1,9 +1,26 @@
-import Card from '../../components/Card/Card';
+import axios from "axios";
+import Card from "../../components/Card/Card";
 import "./WatchLater.css";
-import { useBookmarks } from "../../context/BookmarkContext";
+import { useEffect, useState } from "react";
 
 const WatchLater = () => {
-  const { bookmarkedMovies } = useBookmarks();
+  const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/movies/watch-later", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, 
+        },
+      })
+      .then((response) => {
+        setBookmarkedMovies(response.data.watchLater);
+      })
+      .catch((error) => {
+        console.error("Error fetching Watch Later movies:", error);
+      });
+  }, []);
+  // console.log(bookmarkedMovies);
 
   return (
     <div className="watch-later">
@@ -13,12 +30,13 @@ const WatchLater = () => {
         </div>
         <div className="watch-later-grid">
           {bookmarkedMovies.length > 0 ? (
-            bookmarkedMovies.map((movie, index) => (
+            bookmarkedMovies.map((movie) => (
               <Card
-                key={index}
+                key={movie.movieId} // Use a unique identifier instead of index
                 thumbnail={movie.thumbnail}
                 title={movie.title}
                 description={movie.description}
+                movieId={movie.movieId}
               />
             ))
           ) : (

@@ -40,7 +40,7 @@ const Navbar = () => {
           <span className="nav-label">Watch History</span>
         </Link>
 
-        <Link
+        {/* <Link
           to="/search"
           className={`nav-item ${location.pathname === "/search" ? "active" : ""}`}
         >
@@ -48,7 +48,7 @@ const Navbar = () => {
             <FaSearch/>
           </div>
           <span className="nav-label">Browse</span>
-        </Link>
+        </Link> */}
 
         <Link
           to="/profile"

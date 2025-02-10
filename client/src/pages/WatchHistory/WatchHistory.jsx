@@ -1,30 +1,23 @@
-import thumbnails from "../../images/Thumbnails";
+import { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import "./WatchHistory.css";
+import axios from "axios";
 
 const WatchHistory = () => {
-  const movies = [
-    {
-      thumbnail: thumbnails.movie1,
-      title: "Movie 1",
-      description: "An epic adventure.",
-    },
-    {
-      thumbnail: thumbnails.movie2,
-      title: "Movie 2",
-      description: "A thrilling drama.",
-    },
-    {
-      thumbnail: thumbnails.movie3,
-      title: "Movie 3",
-      description: "A heartwarming story.",
-    },
-    {
-      thumbnail: thumbnails.movie4,
-      title: "Movie 4",
-      description: "A heartwarming story.",
-    },
-  ];
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/movies/watch-history", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((response) => {
+        setMovies(response.data.watchHistory);
+      })
+      .catch((error) => {
+        console.error("Error fetching Watch Later movies:", error);
+      });
+  }, []);
 
   return (
     <div className="watch-history">

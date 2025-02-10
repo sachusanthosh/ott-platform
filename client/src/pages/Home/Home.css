@@ -10,13 +10,23 @@
 .home-title {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   text-align: center;
   color: #e4e4e4; /* Light text color */
 }
 
 .home-container{
     padding-top: 6rem;
+}
+
+.home-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
 }
 
 /* Movie Grid */
@@ -30,4 +40,37 @@
   justify-items: center;
   align-items: start;
   padding-top: 2rem
+}
+
+
+/* search style */
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  padding: 7px 10px;
+  margin-right: 10px;
+  width: 300px;
+  background-color: #1e1e1e; 
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 50px;
+}
+
+.search-button {
+  padding: 7px 20px;
+  background-color: #9b4dff; /* Button background color */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #7a34c9; 
 }

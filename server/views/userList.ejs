@@ -1,11 +1,11 @@
-<% title = title %>
+<% title = 'Users'; %>
 <div class="container" style="height: 100vh;">
     <div class="container header mt-1">
         <div class="d-flex justify-content-between align-items-center col-md-12 p-3">
             <h3>Users List</h3>
             <div class="d-flex justify-content-between col-md-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Movies">
+                    <input type="text" class="form-control" placeholder="Search Users">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
                 </div>
             </div>
@@ -13,14 +13,14 @@
     </div>
     <div class="container users-container mt-3">
         <ul class="list-group list-group-flush">
-            <% for (let i = (currentPage - 1) * usersPerPage; i < Math.min(currentPage * usersPerPage, totalUsers); i++) { %>
+            <% users.forEach(user => { %>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="fw-bold m-1"><a href="/users/details">user<%= i + 1 %>@mail.com</a></div>
+                    <div class="fw-bold m-1"><a href="/users/details?id=<%= user._id %>"><%= user.email %></a></div>
                     <div class="d-flex justify-content-between">
-                        <button class="block m-1"><a href="/users/edit">block</a></button>
+                        <button class="block m-1"><a href="/users/block?id=<%= user._id %>">block</a></button>
                     </div>
                 </li>
-            <% } %>
+            <% }) %>
         </ul>
     </div>
     <div class="container mt-3 d-flex justify-content-center">

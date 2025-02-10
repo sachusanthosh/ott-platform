@@ -7,7 +7,6 @@ const Search = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    // Replace with your search API endpoint
     const response = await fetch(`/api/search?query=${query}`);
     const data = await response.json();
     setResults(data.results);
@@ -23,7 +22,7 @@ const Search = () => {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for movies or shows..."
         />
-        <button type="submit">Search</button>
+        <button className="search-button" type="submit">Search</button>
       </form>
       <div className="results">
         {results.length > 0 ? (

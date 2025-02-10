@@ -59,6 +59,14 @@
 .bookmark-button.bookmarked {
   color: #7c3aed;
 }
+.watchHistory-remove-button{
+  font-size: 1.5rem;
+  color: #c9ced6;
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* transition: color 0.3s ease; */
+}
 
 .card-action {
   font-size: 0.9rem;

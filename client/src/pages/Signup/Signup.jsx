@@ -1,12 +1,43 @@
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  // const [validationError, setValidationError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const responce = await axios.post(
+        "http://localhost:3000/api/auth/register",
+        {
+          userName: name,
+          email: email,
+          password: pass,
+          confirmPassword: confirmPass,
+        }
+      );
+      console.log(responce);
+      navigate("/login")
+    } catch (error) {
+      console.error(error.response.data);
+      alert(error.response.data.message || "An error occurred");
+    }
+  };
+
   return (
     <div>
       <div className="signup-container">
         <div className="signup-card">
           <div className="form-title">Create Your Account</div>
-          <form className="signup-form" action="post">
+          <form className="signup-form" onSubmit={handleSubmit}>
             <div className="inpup-groups">
               <label className="signup-labels" htmlFor="name-input">
                 Enter your name
@@ -17,6 +48,8 @@ const Signup = () => {
                 name="name"
                 id="name-input"
                 placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="inpup-groups">
@@ -28,6 +61,8 @@ const Signup = () => {
                 type="email"
                 name="email"
                 id="email-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="inpup-groups">
@@ -39,6 +74,8 @@ const Signup = () => {
                 type="password"
                 name="password"
                 id="password-input"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
             </div>
             <div className="inpup-groups">
@@ -47,13 +84,17 @@ const Signup = () => {
               </label>
               <input
                 className="signup-input"
-                type="confirm-password"
+                type="password"
                 name="confirm-password"
                 id="confirm-password-input"
+                value={confirmPass}
+                onChange={(e) => setConfirmPass(e.target.value)}
               />
             </div>
 
-            <input className="signup-button" type="button" value="Sign-up" />
+            <button className="signup-button" type="submit">
+              Sign-up
+            </button>
             <hr />
             <div>
               <p className="redirection">

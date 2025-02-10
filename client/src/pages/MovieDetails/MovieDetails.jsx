@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoBookmarkOutline, IoBookmarkSharp } from "react-icons/io5";
+import axios from "axios";
 import "./MovieDetails.css";
 
 const MovieDetails = () => {
@@ -10,7 +11,31 @@ const MovieDetails = () => {
 
   const toggleBookmark = () => {
     setIsBookmarked(!isBookmarked);
-    // Add logic here to handle "Watch Later" state in backend or global state.
+  };
+
+  const handleClick = async () => {
+    try {
+
+      await axios.post(
+        "http://localhost:3000/api/movies/watch-history/remove",
+        { movieId: state.movieId },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      
+      await axios.post(
+        "http://localhost:3000/api/movies/watch-history/add",
+        { movieId: state.movieId },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      console.log("Movie added to watch history");
+    } catch (error) {
+      console.error("Error updating watch history:", error);
+    }
   };
 
   return (
@@ -46,7 +71,10 @@ const MovieDetails = () => {
               <a
                 href="/watch-now"
                 className="watch-now-button"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick();
+                }}
               >
                 Watch Now
               </a>
